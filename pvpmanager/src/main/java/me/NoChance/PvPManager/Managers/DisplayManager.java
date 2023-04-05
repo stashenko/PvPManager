@@ -63,6 +63,7 @@ public class DisplayManager {
 		p.sendActionBar(ChatUtils.setPlaceholders(p.getPlayer(), message));
 	}
 
+	@NonNull
 	public PvPManager getPlugin() {
 		return plugin;
 	}
