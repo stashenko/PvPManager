@@ -6,9 +6,9 @@ import com.github.sirblobman.cooldowns.api.ICooldownsX;
 import com.github.sirblobman.cooldowns.api.configuration.ICooldownSettings;
 import com.github.sirblobman.cooldowns.api.data.ICooldownData;
 
+import me.NoChance.PvPManager.Dependencies.BaseDependency;
 import me.NoChance.PvPManager.Dependencies.DependencyException;
 import me.NoChance.PvPManager.Dependencies.Hook;
-import me.NoChance.PvPManager.Dependencies.API.BaseDependency;
 import me.NoChance.PvPManager.Settings.Settings;
 
 public class CooldownsXHook extends BaseDependency {

@@ -24,12 +24,13 @@ import com.google.common.cache.CacheBuilder;
 
 import me.NoChance.PvPManager.PvPlayer;
 import me.NoChance.PvPManager.Dependencies.Hook;
-import me.NoChance.PvPManager.Dependencies.API.WorldGuardDependency;
+import me.NoChance.PvPManager.Dependencies.Interfaces.WorldGuardDependency;
 import me.NoChance.PvPManager.Managers.PlayerHandler;
 import me.NoChance.PvPManager.Player.ProtectionResult;
 import me.NoChance.PvPManager.Settings.Settings;
 import me.NoChance.PvPManager.Utils.CombatUtils;
 import me.chancesd.sdutils.utils.Log;
+import me.NoChance.PvPManager.Utils.MCVersion;
 
 public class DebugEntityListener implements Listener {
 
@@ -163,7 +164,7 @@ public class DebugEntityListener implements Listener {
 	public void onLightningStrike(final LightningStrikeEvent event) {
 		if (CombatUtils.isWorldExcluded(event.getLightning().getWorld().getName()))
 			return;
-		if (!CombatUtils.isVersionAtLeast(Settings.getMinecraftVersion(), "1.13.1"))
+		if (!MCVersion.isAtLeast(MCVersion.V1_13_1))
 			return;
 		if (event.getCause() != Cause.TRIDENT)
 			return;
