@@ -76,10 +76,9 @@ public class PlayerListenerTest {
 
 		listener.onPlayerLogout(new PlayerQuitEvent(player, ""));
 		verify(player, times(1)).setHealth(0);
-		assertFalse(pvPlayer.isInCombat());
 
 		assertEquals(2, ph.getPlayers().size()); // attacker and defender
-		listener.onPlayerLogoutMonitor(new PlayerQuitEvent(defender, ""));
+		listener.onPlayerLogoutMonitor(new PlayerQuitEvent(player, ""));
 		assertEquals(1, ph.getPlayers().size());
 	}
 

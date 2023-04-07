@@ -16,8 +16,8 @@ import me.NoChance.PvPManager.Utils.MCVersion;
 public class BukkitNameTag extends NameTag {
 
 	private Team inCombat;
-	private Team pvpOn;
-	private Team pvpOff;
+	private Team pvpOnTeam;
+	private Team pvpOffTeam;
 	private Team previousTeam;
 	private String previousTeamName;
 	private final String combatTeamID;
@@ -53,30 +53,30 @@ public class BukkitNameTag extends NameTag {
 		if (Settings.isToggleNametagsEnabled()) {
 			if (!pvpOnPrefix.isEmpty()) {
 				if (scoreboard.getTeam(PVPON) != null) {
-					pvpOn = scoreboard.getTeam(PVPON);
+					pvpOnTeam = scoreboard.getTeam(PVPON);
 				} else {
-					pvpOn = scoreboard.registerNewTeam(PVPON);
-					pvpOn.setCanSeeFriendlyInvisibles(false);
-					pvpOn.setPrefix(pvpOnPrefix);
+					pvpOnTeam = scoreboard.registerNewTeam(PVPON);
+					pvpOnTeam.setCanSeeFriendlyInvisibles(false);
+					pvpOnTeam.setPrefix(pvpOnPrefix);
 					if (MCVersion.isAtLeast(MCVersion.V1_13)) {
 						final ChatColor nameColor = getLastColor(pvpOnPrefix);
 						if (nameColor != null) {
-							pvpOn.setColor(nameColor);
+							pvpOnTeam.setColor(nameColor);
 						}
 					}
 				}
 			}
 			if (!pvpOffPrefix.isEmpty()) {
 				if (scoreboard.getTeam(PVPOFF) != null) {
-					pvpOff = scoreboard.getTeam(PVPOFF);
+					pvpOffTeam = scoreboard.getTeam(PVPOFF);
 				} else {
-					pvpOff = scoreboard.registerNewTeam(PVPOFF);
-					pvpOff.setCanSeeFriendlyInvisibles(false);
-					pvpOff.setPrefix(pvpOffPrefix);
+					pvpOffTeam = scoreboard.registerNewTeam(PVPOFF);
+					pvpOffTeam.setCanSeeFriendlyInvisibles(false);
+					pvpOffTeam.setPrefix(pvpOffPrefix);
 					if (MCVersion.isAtLeast(MCVersion.V1_13)) {
 						final ChatColor nameColor = getLastColor(pvpOffPrefix);
 						if (nameColor != null) {
-							pvpOff.setColor(nameColor);
+							pvpOffTeam.setColor(nameColor);
 						}
 					}
 				}
@@ -159,15 +159,15 @@ public class BukkitNameTag extends NameTag {
 	@Override
 	public final void setPvP(final boolean state) {
 		if (state) {
-			if (pvpOn == null) {
+			if (pvpOnTeam == null) {
 				restoreNametag();
 			} else {
-				pvpOn.addEntry(pvPlayer.getName());
+				pvpOnTeam.addEntry(pvPlayer.getName());
 			}
-		} else if (pvpOff == null) {
+		} else if (pvpOffTeam == null) {
 			restoreNametag();
 		} else {
-			pvpOff.addEntry(pvPlayer.getName());
+			pvpOffTeam.addEntry(pvPlayer.getName());
 		}
 	}
 
